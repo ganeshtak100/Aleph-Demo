@@ -3,7 +3,7 @@ import {baseUrl} from '../constant/cred';
 import {decode} from '@mapbox/polyline';
 import {process} from 'react-native';
 
-const API_KEY = process.env.apiKey;
+const API_KEY = process.env.googleApiKey;
 
 export const getNearbyPetrolPumps = async (latitude: any, longitude: any) => {
   const response = await axios.get(baseUrl, {
