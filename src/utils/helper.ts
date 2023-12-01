@@ -1,6 +1,9 @@
 import axios from 'axios';
-import {apiKey, baseUrl} from '../constant/cred';
+import {baseUrl} from '../constant/cred';
 import {decode} from '@mapbox/polyline';
+import {process} from 'react-native';
+
+const API_KEY = process.env.apiKey;
 
 export const getNearbyPetrolPumps = async (latitude: any, longitude: any) => {
   const response = await axios.get(baseUrl, {
@@ -8,7 +11,7 @@ export const getNearbyPetrolPumps = async (latitude: any, longitude: any) => {
       location: `${latitude},${longitude}`,
       radius: 5000,
       type: 'gas_station',
-      key: apiKey,
+      key: API_KEY,
     },
   });
 
@@ -27,7 +30,7 @@ export const getNearbyPetronasStations = async (
         query: 'Petronas',
         location: `${latitude},${longitude}`,
         radius: 5000, // Search within a 5km radius
-        key: apiKey,
+        key: API_KEY,
       },
     },
   );
@@ -38,7 +41,7 @@ export const getNearbyPetronasStations = async (
 export const getDirections = async (startLoc: any, destinationLoc: any) => {
   try {
     let resp = await fetch(
-      `https://maps.googleapis.com/maps/api/directions/json?origin=${startLoc}&destination=${destinationLoc}&key=${apiKey}`,
+      `https://maps.googleapis.com/maps/api/directions/json?origin=${startLoc}&destination=${destinationLoc}&key=${API_KEY}`,
     );
     let respJson = await resp.json();
     console.log('resp---', respJson);
